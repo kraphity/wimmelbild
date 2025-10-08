@@ -32,7 +32,7 @@ document.querySelector('#app').innerHTML = `
             <div class="label">10</div>
           </div>
           <div class="image-container">
-            <img src="/wb1.png" alt="Wimmelbild" class="wimmelbild-image" />
+            <img src="/wimmelbild_stadt.jpg" alt="Wimmelbild" class="wimmelbild-image" />
             <div class="grid-overlay"></div>
           </div>
         </div>
@@ -44,7 +44,7 @@ document.querySelector('#app').innerHTML = `
 // Erstelle das Koordinatengitter
 function createGrid() {
   const gridOverlay = document.querySelector('.grid-overlay');
-  
+
   // Erstelle 10x10 Gitterzellen
   for (let row = 0; row < 10; row++) {
     for (let col = 0; col < 10; col++) {
@@ -53,12 +53,12 @@ function createGrid() {
       cell.dataset.row = row + 1;
       cell.dataset.col = String.fromCharCode(65 + col); // A-J
       cell.title = `${String.fromCharCode(65 + col)}${row + 1}`;
-      
+
       // Optional: Füge Click-Handler hinzu
       cell.addEventListener('click', () => {
         console.log(`Clicked on ${cell.dataset.col}${cell.dataset.row}`);
       });
-      
+
       gridOverlay.appendChild(cell);
     }
   }
