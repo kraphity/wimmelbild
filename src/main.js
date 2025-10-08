@@ -65,7 +65,6 @@ document.querySelector('#app').innerHTML = `
   </div>
 `
 
-// Konvertiere Hex-Farbe zu RGB-Werten
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
@@ -75,7 +74,6 @@ function hexToRgb(hex) {
   } : null;
 }
 
-// Ändere die Gitterlinienfarbe
 function changeGridColor(colorHex) {
   const rgb = hexToRgb(colorHex);
   if (rgb) {
@@ -84,33 +82,27 @@ function changeGridColor(colorHex) {
   }
 }
 
-// Initialisiere den Colorpicker
 function initializeColorPicker() {
   const colorPicker = document.getElementById('gridColorPicker');
   const presetColors = document.querySelectorAll('.preset-color');
 
-  // Event-Listener für den Colorpicker
   colorPicker.addEventListener('change', (e) => {
     changeGridColor(e.target.value);
-    // Entferne active-Klasse von allen Preset-Farben
     presetColors.forEach(preset => preset.classList.remove('active'));
   });
 
-  // Event-Listener für Preset-Farben
   presetColors.forEach(preset => {
     preset.addEventListener('click', () => {
       const color = preset.dataset.color;
       changeGridColor(color);
       colorPicker.value = color;
 
-      // Aktualisiere active-Klasse
       presetColors.forEach(p => p.classList.remove('active'));
       preset.classList.add('active');
     });
   });
 }
 
-// Initialisiere den Einstellungen-Button
 function initializeSettingsButton() {
   const settingsButton = document.getElementById('settingsButton');
   const colorPickerContainer = document.getElementById('colorPickerContainer');
@@ -120,11 +112,9 @@ function initializeSettingsButton() {
   });
 }
 
-// Erstelle das Koordinatengitter
 function createGrid() {
   const gridOverlay = document.querySelector('.grid-overlay');
 
-  // Erstelle 10x10 Gitterzellen
   for (let row = 0; row < 10; row++) {
     for (let col = 0; col < 10; col++) {
       const cell = document.createElement('div');
@@ -133,7 +123,6 @@ function createGrid() {
       cell.dataset.col = String.fromCharCode(65 + col); // A-J
       cell.title = `${String.fromCharCode(65 + col)}${row + 1}`;
 
-      // Optional: Füge Click-Handler hinzu
       cell.addEventListener('click', () => {
         console.log(`Clicked on ${cell.dataset.col}${cell.dataset.row}`);
       });
@@ -143,7 +132,6 @@ function createGrid() {
   }
 }
 
-// Initialisiere alles nach dem Laden der Seite
 createGrid();
 initializeColorPicker();
 initializeSettingsButton();
