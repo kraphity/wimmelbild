@@ -251,3 +251,21 @@ h1 {
   border-color: #646cff;
   border-width: 3px;
 }
+
+.image-reference {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.image-reference a {
+  color: #646cff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.image-reference a:hover {
+  color: #5a5fcf;
+  text-decoration: underline;
+}
