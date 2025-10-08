@@ -3,6 +3,21 @@ import './style.css'
 document.querySelector('#app').innerHTML = `
   <div class="wimmelbild-container">
     <h1>Wimmelbild</h1>
+    
+    <div class="color-picker-container">
+      <label class="color-picker-label" for="gridColorPicker">Gitterlinienfarbe:</label>
+      <input type="color" id="gridColorPicker" class="color-picker" value="#ff0000" />
+      
+      <div class="preset-colors">
+        <div class="preset-color active" style="background-color: #ff0000" data-color="#ff0000" title="Rot"></div>
+        <div class="preset-color" style="background-color: #0066ff" data-color="#0066ff" title="Blau"></div>
+        <div class="preset-color" style="background-color: #00cc00" data-color="#00cc00" title="Grün"></div>
+        <div class="preset-color" style="background-color: #ff6600" data-color="#ff6600" title="Orange"></div>
+        <div class="preset-color" style="background-color: #9900cc" data-color="#9900cc" title="Lila"></div>
+        <div class="preset-color" style="background-color: #000000" data-color="#000000" title="Schwarz"></div>
+      </div>
+    </div>
+    
     <div class="game-area">
       <div class="coordinates-container">
         <div class="column-labels">
@@ -41,6 +56,51 @@ document.querySelector('#app').innerHTML = `
   </div>
 `
 
+// Konvertiere Hex-Farbe zu RGB-Werten
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+// Ändere die Gitterlinienfarbe
+function changeGridColor(colorHex) {
+  const rgb = hexToRgb(colorHex);
+  if (rgb) {
+    const root = document.documentElement;
+    root.style.setProperty('--grid-line-color', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+  }
+}
+
+// Initialisiere den Colorpicker
+function initializeColorPicker() {
+  const colorPicker = document.getElementById('gridColorPicker');
+  const presetColors = document.querySelectorAll('.preset-color');
+
+  // Event-Listener für den Colorpicker
+  colorPicker.addEventListener('change', (e) => {
+    changeGridColor(e.target.value);
+    // Entferne active-Klasse von allen Preset-Farben
+    presetColors.forEach(preset => preset.classList.remove('active'));
+  });
+
+  // Event-Listener für Preset-Farben
+  presetColors.forEach(preset => {
+    preset.addEventListener('click', () => {
+      const color = preset.dataset.color;
+      changeGridColor(color);
+      colorPicker.value = color;
+
+      // Aktualisiere active-Klasse
+      presetColors.forEach(p => p.classList.remove('active'));
+      preset.classList.add('active');
+    });
+  });
+}
+
 // Erstelle das Koordinatengitter
 function createGrid() {
   const gridOverlay = document.querySelector('.grid-overlay');
@@ -64,5 +124,6 @@ function createGrid() {
   }
 }
 
-// Initialisiere das Gitter nach dem Laden der Seite
+// Initialisiere alles nach dem Laden der Seite
 createGrid();
+initializeColorPicker();

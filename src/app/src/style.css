@@ -6,6 +6,13 @@
   color: #213547;
   background-color: #f5f5f5;
 
+  /* Grid line colors - can be changed dynamically */
+  --grid-line-color: 255, 0, 0;
+  --grid-line-opacity: 0.6;
+  --grid-line-hover-opacity: 0.8;
+  --grid-background-opacity: 0.02;
+  --grid-background-hover-opacity: 0.15;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -116,12 +123,12 @@ h1 {
 
 .grid-cell {
   border: 0;
-  border-right: 2px solid rgba(255, 0, 0, 0.6);
-  border-bottom: 2px solid rgba(255, 0, 0, 0.6);
-  background: rgba(255, 0, 0, 0.02);
+  border-right: 2px solid rgba(var(--grid-line-color), var(--grid-line-opacity));
+  border-bottom: 2px solid rgba(var(--grid-line-color), var(--grid-line-opacity));
+  background: rgba(var(--grid-line-color), var(--grid-background-opacity));
   pointer-events: all;
   cursor: crosshair;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .grid-cell:nth-child(10n) {
@@ -133,7 +140,66 @@ h1 {
 }
 
 .grid-cell:hover {
-  background: rgba(255, 0, 0, 0.15);
-  border-right-color: rgba(255, 0, 0, 0.8);
-  border-bottom-color: rgba(255, 0, 0, 0.8);
+  background: rgba(var(--grid-line-color), var(--grid-background-hover-opacity));
+  border-right-color: rgba(var(--grid-line-color), var(--grid-line-hover-opacity));
+  border-bottom-color: rgba(var(--grid-line-color), var(--grid-line-hover-opacity));
+}
+
+/* Color picker styles */
+.color-picker-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.color-picker-label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.color-picker {
+  width: 50px;
+  height: 35px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.color-picker:hover {
+  border-color: #646cff;
+}
+
+.color-picker:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+.preset-colors {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.preset-color {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.preset-color:hover {
+  border-color: #646cff;
+  transform: scale(1.1);
+}
+
+.preset-color.active {
+  border-color: #646cff;
+  border-width: 3px;
 }
