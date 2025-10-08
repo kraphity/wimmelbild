@@ -7,7 +7,7 @@
   background-color: #f5f5f5;
 
   /* Grid line colors - can be changed dynamically */
-  --grid-line-color: 255, 0, 0;
+  --grid-line-color: 255, 255, 255;
   --grid-line-opacity: 0.6;
   --grid-line-hover-opacity: 0.8;
   --grid-background-opacity: 0.02;
@@ -43,6 +43,15 @@ h1 {
   line-height: 1.1;
   margin-bottom: 2rem;
   color: #646cff;
+  margin: 0;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .game-area {
@@ -101,8 +110,6 @@ h1 {
 
 .wimmelbild-image {
   display: block;
-  max-width: 800px;
-  max-height: 600px;
   width: auto;
   height: auto;
   border-radius: 8px;
@@ -146,6 +153,42 @@ h1 {
 }
 
 /* Color picker styles */
+.settings-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: #646cff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.settings-button:hover {
+  background: #5a5fcf;
+  transform: translateY(-1px);
+}
+
+.settings-button:active {
+  transform: translateY(0);
+}
+
+.settings-icon {
+  width: 18px;
+  height: 18px;
+}
+
 .color-picker-container {
   margin-bottom: 20px;
   display: flex;
@@ -153,6 +196,11 @@ h1 {
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
+  transition: all 0.3s ease;
+}
+
+.color-picker-container.hidden {
+  display: none;
 }
 
 .color-picker-label {
