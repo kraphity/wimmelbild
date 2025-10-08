@@ -61,6 +61,9 @@ document.querySelector('#app').innerHTML = `
           </div>
         </div>
       </div>
+      <div class="image-reference">
+        Quelle: <a href="https://pin.it/4a7zOfpkt" target="_blank" rel="noopener noreferrer">https://pin.it/4a7zOfpkt</a>
+      </div>
     </div>
   </div>
 `
