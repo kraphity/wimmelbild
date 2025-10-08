@@ -15,13 +15,13 @@ document.querySelector('#app').innerHTML = `
     
     <div class="color-picker-container hidden" id="colorPickerContainer">
       <label class="color-picker-label" for="gridColorPicker">Gitterlinienfarbe:</label>
-      <input type="color" id="gridColorPicker" class="color-picker" value="#ff0000" />
+      <input type="color" id="gridColorPicker" class="color-picker" value="#ffffff" />
       
       <div class="preset-colors">
-        <div class="preset-color active" style="background-color: #ff0000" data-color="#ff0000" title="Rot"></div>
+        <div class="preset-color active" style="background-color: #ffffff" data-color="#ffffff" title="Weiss"></div>
+        <div class="preset-color" style="background-color: #ff0000" data-color="#ff0000" title="Rot"></div>
         <div class="preset-color" style="background-color: #0066ff" data-color="#0066ff" title="Blau"></div>
         <div class="preset-color" style="background-color: #00cc00" data-color="#00cc00" title="Grün"></div>
-        <div class="preset-color" style="background-color: #ff6600" data-color="#ff6600" title="Orange"></div>
         <div class="preset-color" style="background-color: #9900cc" data-color="#9900cc" title="Lila"></div>
         <div class="preset-color" style="background-color: #000000" data-color="#000000" title="Schwarz"></div>
       </div>
