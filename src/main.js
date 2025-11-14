@@ -56,85 +56,85 @@ document.querySelector('#app').innerHTML = `
             <div class="label">10</div>
           </div>
           <div class="image-container">
-            <img src="/wimmelbild_stadt.jpg" alt="Wimmelbild" class="wimmelbild-image" />
+            <img src="/wimmelbild_2.jpg" alt="Wimmelbild" class="wimmelbild-image" />
             <div class="grid-overlay"></div>
           </div>
         </div>
       </div>
       <div class="image-reference">
-        Quelle: <a href="https://pin.it/4a7zOfpkt" target="_blank" rel="noopener noreferrer">https://pin.it/4a7zOfpkt</a>
+        Quelle: <a href="https://ch.pinterest.com/pin/8444318046805080/" target="_blank" rel="noopener noreferrer">pinterest</a>
       </div>
     </div>
   </div>
 `
 
 function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result ? {
     r: parseInt(result[1], 16),
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
-  } : null;
+  } : null
 }
 
 function changeGridColor(colorHex) {
-  const rgb = hexToRgb(colorHex);
+  const rgb = hexToRgb(colorHex)
   if (rgb) {
-    const root = document.documentElement;
-    root.style.setProperty('--grid-line-color', `${rgb.r}, ${rgb.g}, ${rgb.b}`);
+    const root = document.documentElement
+    root.style.setProperty('--grid-line-color', `${rgb.r}, ${rgb.g}, ${rgb.b}`)
   }
 }
 
 function initializeColorPicker() {
-  const colorPicker = document.getElementById('gridColorPicker');
-  const presetColors = document.querySelectorAll('.preset-color');
+  const colorPicker = document.getElementById('gridColorPicker')
+  const presetColors = document.querySelectorAll('.preset-color')
 
   colorPicker.addEventListener('change', (e) => {
-    changeGridColor(e.target.value);
-    presetColors.forEach(preset => preset.classList.remove('active'));
-  });
+    changeGridColor(e.target.value)
+    presetColors.forEach(preset => preset.classList.remove('active'))
+  })
 
   presetColors.forEach(preset => {
     preset.addEventListener('click', () => {
-      const color = preset.dataset.color;
-      changeGridColor(color);
-      colorPicker.value = color;
+      const color = preset.dataset.color
+      changeGridColor(color)
+      colorPicker.value = color
 
-      presetColors.forEach(p => p.classList.remove('active'));
-      preset.classList.add('active');
-    });
-  });
+      presetColors.forEach(p => p.classList.remove('active'))
+      preset.classList.add('active')
+    })
+  })
 }
 
 function initializeSettingsButton() {
-  const settingsButton = document.getElementById('settingsButton');
-  const colorPickerContainer = document.getElementById('colorPickerContainer');
+  const settingsButton = document.getElementById('settingsButton')
+  const colorPickerContainer = document.getElementById('colorPickerContainer')
 
   settingsButton.addEventListener('click', () => {
-    colorPickerContainer.classList.toggle('hidden');
-  });
+    colorPickerContainer.classList.toggle('hidden')
+  })
 }
 
 function createGrid() {
-  const gridOverlay = document.querySelector('.grid-overlay');
+  const gridOverlay = document.querySelector('.grid-overlay')
 
   for (let row = 0; row < 10; row++) {
     for (let col = 0; col < 10; col++) {
-      const cell = document.createElement('div');
-      cell.classList.add('grid-cell');
-      cell.dataset.row = row + 1;
-      cell.dataset.col = String.fromCharCode(65 + col); // A-J
-      cell.title = `${String.fromCharCode(65 + col)}${row + 1}`;
+      const cell = document.createElement('div')
+      cell.classList.add('grid-cell')
+      cell.dataset.row = row + 1
+      cell.dataset.col = String.fromCharCode(65 + col) // A-J
+      cell.title = `${String.fromCharCode(65 + col)}${row + 1}`
 
       cell.addEventListener('click', () => {
-        console.log(`Clicked on ${cell.dataset.col}${cell.dataset.row}`);
-      });
+        console.log(`Clicked on ${cell.dataset.col}${cell.dataset.row}`)
+      })
 
-      gridOverlay.appendChild(cell);
+      gridOverlay.appendChild(cell)
     }
   }
 }
 
-createGrid();
-initializeColorPicker();
-initializeSettingsButton();
+createGrid()
+initializeColorPicker()
+initializeSettingsButton()
